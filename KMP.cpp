@@ -37,3 +37,20 @@ vector<int> KMP(const string& H, const string& N){
     }
     return v;
 }
+
+vector<int> KMP2(const string& H, const string& N){
+    int n = H.length(), m = N.length();
+    vector<int> v;
+    int begin = 0, match = 0;
+    for(int i=0;i<n;i++){
+        while(match > 0 && H[i] != N[match]) match = pi[match-1];
+        if(H[i] == N[match]){
+            match++;
+            if(match == m){
+                v.push_back(i-m+1);
+                match = pi[match-1];
+            }
+        }
+    }
+    return v;
+}
