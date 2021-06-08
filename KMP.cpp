@@ -1,8 +1,9 @@
-void getPI(){
-    int n = P.length();
+vector<int> getPI(const string& N){
+    int n = N.length();
+    vector<int> pi(n, 0);
     int begin = 1, match = 0;
     while(begin + match < n){
-        if(P[match] == P[begin + match]){
+        if(N[match] == N[begin + match]){
             match++;
             pi[begin+match-1] = match;
         }
@@ -14,12 +15,15 @@ void getPI(){
             }
         }
     }
+    return pi;
 }
-void KMP(){
-    int n = T.length(), m = P.length();
+
+vector<int> KMP(const string& H, const string& N){
+    int n = H.length(), m = N.length();
+    vector<int> v;
     int begin = 0, match = 0;
     while(begin + match < n){
-        if(match < m && T[begin+match] == P[match]){
+        if(match < m && H[begin+match] == N[match]){
             match++;
             if(match == m) v.push_back(begin+1);
         }
@@ -31,4 +35,5 @@ void KMP(){
             }
         }
     }
+    return v;
 }
